@@ -1,0 +1,51 @@
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+
+function miniMaxSum(arr) {
+    var array = arr;
+    var max = [];
+    var min = [];
+    arr.sort(function(a, b) {
+        return a - b;
+    });
+    
+    for (i = 1 ; i < arr.length ; i++) {
+        max.push(arr[i]);
+    } 
+    for (j = 0 ; j < arr.length-1 ; j++) {
+        min.push(array[j]);
+    }
+    var maxSum = max.reduce( function(total, amount){
+        return total + amount
+    });
+    var minSum = min.reduce( function(total, amount){
+        return total + amount
+    });
+    console.log(minSum+' '+maxSum);
+}
+
+function main() {
+    arr = readLine().split(' ');
+    arr = arr.map(Number);
+    miniMaxSum(arr);
+
+}
