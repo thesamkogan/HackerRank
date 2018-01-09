@@ -1,0 +1,61 @@
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+function timeConversion(s) {
+  var s2 = s.split(':');
+  var s3 = s2[2].split('');
+  var newHour = parseInt(s2[0]);
+  var print = [];
+  if (s3[2] === 'P') {
+      if (newHour === 12) {
+            newHour = '12';
+            print.push(newHour, ':', s2[1], ':', s3[0], s3[1]);
+            var u = print.join('');
+            return u;
+      } else {
+        newHour += 12;
+        print.push(newHour, ':', s2[1], ':', s3[0], s3[1]);
+        var t = print.join('');
+        return t;
+    }
+  } else if (s3[2] === 'A') {
+    if (newHour < 12) {
+      print.push(s2[0], ':', s2[1], ':');
+      print.push(s3[0], s3[1]);
+      var v = print.join('');
+      return v;
+    } else {
+        newHour = '00';
+        print.push(newHour, ':', s2[1], ':', s3[0], s3[1]);
+        var u = print.join('');
+        return u;
+    }
+  }
+}
+
+
+function main() {
+    var s = readLine();
+    var result = timeConversion(s);
+    process.stdout.write("" + result + "\n");
+
+}
+
