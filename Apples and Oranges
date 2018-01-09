@@ -46,4 +46,4 @@ function main() {
 
 
 }
-// Initail solve did not work because of time out, I was using array.prototype.filter and for loops which may take a long time.
+// Initial solve did not work because of time out, I was using array.prototype.filter and for loops which may take a long time.
